@@ -5,7 +5,7 @@ set(SRC_FILES
     smartptr.C
     smartptr_extra.C
 )
-set_source_files_properties(SRC_FILES PROPERTIES HEADER_FILE smartptr.C)
+#set_property(SOURCE smartptr_extra.C PROPERTY HEADER_FILE_ONLY ON)
 
 add_executable(smartptr ${SRC_FILES})
 target_link_libraries(smartptr PRIVATE benchmark::benchmark)

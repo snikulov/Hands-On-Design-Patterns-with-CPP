@@ -13,15 +13,19 @@ set(SRC_FILES
     nonmember_swap_std_only.C
     std_swap_copyable.C
     std_swap_movable.C
-# Will not compile cause of deleted copy/move constructors
-#    std_swap_noncopyable.C
-#    std_swap_nonmovable.C
     swap_rollback.C
     vector_empty.C
     vector_swap.C
 )
 
+# Will not compile cause of deleted copy/move constructors
+set(NON_CMPL_SRC
+    std_swap_noncopyable.C
+    std_swap_nonmovable.C
+)
+set_property(SOURCE ${NON_CMPL_SRC} PROPERTY HEADER_FILE_ONLY ON)
+
 foreach(_file ${SRC_FILES})
     get_filename_component(_exe_name ${_file} NAME_WE)
-    add_executable(${_exe_name} ${_file})
+    add_executable(${_exe_name} ${_file} ${NON_CMPL_SRC})
 endforeach()
